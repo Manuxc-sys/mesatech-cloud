@@ -1,0 +1,57 @@
+# ==========================================
+# 1. SEGURIDAD Y SECRETOS (CRÍTICO)
+# ==========================================
+*.env
+.env
+.env.*
+*.pem
+*.key
+secrets.yml
+
+# ==========================================
+# 2. JAVA Y SPRING BOOT (MAVEN)
+# ==========================================
+target/
+*.class
+*.jar
+*.war
+*.ear
+.mvn/
+!/.mvn/wrapper/maven-wrapper.jar
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+
+# ==========================================
+# 3. LOGS Y BASES DE DATOS LOCALES
+# ==========================================
+*.log
+/db-mesatech/data/
+pgdata-local/
+mysql-data/
+
+# ==========================================
+# 4. ENTORNOS DE DESARROLLO (IDEs)
+# ==========================================
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+
+# Eclipse
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# VS Code
+.vscode/
+
+# ==========================================
+# 5. SISTEMA OPERATIVO
+# ==========================================
+.DS_Store
+Thumbs.db

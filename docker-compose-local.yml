@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  db-mesatech:
+    image: postgres:15-alpine
+    container_name: db-mesatech
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./db-mesatech/.env
+    volumes:
+      - pgdata-local:/var/lib/postgresql/data
+    networks:
+      - mesatech-network
+
+  ms-catalogo:
+    build: ./ms-catalogo
+    container_name: ms-catalogo
+    # No exponemos el puerto 8080 al host para evitar conflictos, la comunicación es interna
+    env_file:
+      - ./ms-catalogo/.env
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db-mesatech:5432/mesatech_db
+    networks:
+      - mesatech-network
+    depends_on:
+      - db-mesatech
+
+  ms-pedidos:
+    build: ./ms-pedidos
+    container_name: ms-pedidos
+    env_file:
+      - ./ms-pedidos/.env
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db-mesatech:5432/mesatech_db
+    networks:
+      - mesatech-network
+    depends_on:
+      - db-mesatech
+
+  bff-service:
+    build: ./BFF
+    container_name: bff-service
+    ports:
+      - "8080:8080" # Único punto de entrada expuesto localmente
+    environment:
+      - MS_CATALOGO_URL=http://ms-catalogo:8080
+      - MS_PEDIDOS_URL=http://ms-pedidos:8080
+      - SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI=https://sts.windows.net/TU-TENANT-ID/
+    networks:
+      - mesatech-network
+    depends_on:
+      - ms-catalogo
+      - ms-pedidos
+
+networks:
+  mesatech-network:
+    driver: bridge
+
+volumes:
+  pgdata-local:

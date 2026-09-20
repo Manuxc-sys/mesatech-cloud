@@ -1,0 +1,14 @@
+# spring.application.name=ms-pedidos
+
+server:
+  port: 8080
+spring:
+  application:
+    name: ms-pedidos 
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:3306/mesatech_db
+    username: root
+    password: rootpassword
+  jpa:
+    hibernate:
+      ddl-auto: update

@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  db-mesatech:
+    image: mysql:8.0
+    container_name: db-mesatech
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: mesatech_db
+    networks:
+      - mesatech-network
+
+  ms-catalogo:
+    build: ./ms-catalogo
+    environment:
+      - DB_HOST=db-mesatech
+    networks:
+      - mesatech-network
+    depends_on:
+      - db-mesatech
+
+  ms-pedidos:
+    build: ./ms-pedidos
+    environment:
+      - DB_HOST=db-mesatech
+    networks:
+      - mesatech-network
+    depends_on:
+      - db-mesatech
+
+  bff-service:
+    build: ./bff-service
+    ports:
+      - "8080:8080"
+    networks:
+      - mesatech-network
+
+networks:
+  mesatech-network:
+    driver: bridge

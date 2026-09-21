@@ -1,10 +1,10 @@
-# spring.application.name=ms-pedidos
+# spring.application.name=ms-solicitudes
 
 server:
   port: 8080
 spring:
   application:
-    name: ms-pedidos 
+    name: ms-solicitudes
   datasource:
     url: jdbc:mysql://${DB_HOST:localhost}:3306/mesatech_db
     username: root

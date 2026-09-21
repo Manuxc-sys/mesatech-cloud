@@ -1,13 +1,13 @@
-package mesatech.ms_pedidos;
+package mesatech.ms_solicitudes;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MsPedidosApplicationTests {
+class MsSolicitudesApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
 
 }

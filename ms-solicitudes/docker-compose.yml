@@ -1,8 +1,7 @@
-
 services:
-  ms-pedidos:
+  ms-solicitudes:
     build: .
-    container_name: ms-pedidos
+    container_name: ms-solicitudes
     ports:
       - "8080:8080"
     env_file:

@@ -20,8 +20,8 @@ services:
     depends_on:
       - db-mesatech
 
-  ms-pedidos:
-    build: ./ms-pedidos
+  ms-solicitudes:
+    build: ./ms-solicitudes
     environment:
       - DB_HOST=db-mesatech
     networks:

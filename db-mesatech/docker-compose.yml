@@ -1,14 +1,16 @@
-version: '3.8'
+
 services:
   db-mesatech:
-    image: postgres:15-alpine
+    image: mysql:8.0
     container_name: db-mesatech
     ports:
-      - "5432:5432"
+      - "3306:3306" # Expuesto a la VPC de AWS (protegido por Security Group)
     env_file:
       - .env
+    environment:
+      - MYSQL_DATABASE=mesatech_db
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - mysql-data:/var/lib/mysql
 
 volumes:
-  pgdata:
+  mysql-data:

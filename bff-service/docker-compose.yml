@@ -1,0 +1,13 @@
+
+services:
+  bff-service:
+    build: .
+    container_name: bff-service
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      - MS_CATALOGO_URL=${MS_CATALOGO_URL}
+      - MS_PEDIDOS_URL=${MS_PEDIDOS_URL}
+      - SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI=https://sts.windows.net/${TENANT_ID}/

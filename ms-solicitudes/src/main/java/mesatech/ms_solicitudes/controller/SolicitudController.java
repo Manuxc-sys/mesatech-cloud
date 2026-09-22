@@ -46,4 +46,15 @@ public class SolicitudController {
         solicitudService.eliminar(id);
         return ResponseEntity.noContent().build();
     }
-}
+
+    @PutMapping("/{id}/estado")
+    public ResponseEntity<?> cambiarestado(@PathVariable Long id, @RequestParam String estado){
+        try {
+            Solicitud solicitudActualizada = solicitudService.actualizarEstado(id, estado);
+            return ResponseEntity.ok(solicitudActualizada);}
+        catch (IllegalStateException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+        }
+    }
+

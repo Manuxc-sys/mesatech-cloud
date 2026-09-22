@@ -43,4 +43,14 @@ public class SolicitudService {
     public void eliminar(Long id) {
         solicitudRepository.deleteById(id);
     }
+
+    public Solicitud actualizarEstado (Long id, String nuevoEstado) {
+        Solicitud solicitudActual = solicitudRepository.findById(id).orElseThrow(() -> new RuntimeException("Solicitud no encontrada"));
+        if (nuevoEstado.equals("RESUELTA") && !solicitudActual.getEstado().equals("EN_PROCESO")) {
+            throw new IllegalStateException("Error: una solicitud no puede psar a Resuelta sin antes estar En proceso");
+        }
+        solicitudActual.setEstado(nuevoEstado);
+        return solicitudRepository.save(solicitudActual);
+
+    }
 }

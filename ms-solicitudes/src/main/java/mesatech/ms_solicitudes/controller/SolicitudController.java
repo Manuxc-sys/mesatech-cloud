@@ -1,5 +1,6 @@
 package mesatech.ms_solicitudes.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import mesatech.ms_solicitudes.entity.Solicitud;
 import mesatech.ms_solicitudes.service.SolicitudService;
@@ -28,7 +29,7 @@ public class SolicitudController {
     }
 
     @PostMapping
-    public ResponseEntity<Solicitud> crear(@RequestBody Solicitud solicitud) {
+    public ResponseEntity<Solicitud> crear(@Valid @RequestBody Solicitud solicitud) {
         return ResponseEntity.ok(solicitudService.crear(solicitud));
     }
 

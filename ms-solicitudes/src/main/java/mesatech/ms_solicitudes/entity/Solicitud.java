@@ -1,6 +1,8 @@
 package mesatech.ms_solicitudes.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,11 +20,15 @@ public class Solicitud {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Titulo obligatorio")
+    @Column(nullable = false, length =150)
     private String titulo;
 
     @Column(columnDefinition = "TEXT")
     private String descripcion;
 
+    @NotNull(message = "categoria obligatoria")
+    @Column(nullable = false)
     private Long categoriaId;
 
     private Long prioridadId;

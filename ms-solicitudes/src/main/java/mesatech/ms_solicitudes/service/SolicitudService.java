@@ -46,6 +46,11 @@ public class SolicitudService {
 
     public Solicitud actualizarEstado (Long id, String nuevoEstado) {
         Solicitud solicitudActual = solicitudRepository.findById(id).orElseThrow(() -> new RuntimeException("Solicitud no encontrada"));
+
+        if (solicitudActual.getEstado().equals("CERRADA") || solicitudActual.getEstado().equals("CANCELADA")) {
+            throw new IllegalStateException("Error, solicitud cerrada o cancelada, no se puede cambiar estado");
+        }
+
         if (nuevoEstado.equals("RESUELTA") && !solicitudActual.getEstado().equals("EN_PROCESO")) {
             throw new IllegalStateException("Error: una solicitud no puede psar a Resuelta sin antes estar En proceso");
         }

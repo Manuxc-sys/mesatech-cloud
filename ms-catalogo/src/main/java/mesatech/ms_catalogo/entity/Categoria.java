@@ -1,22 +1,24 @@
 package mesatech.ms_catalogo.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "items_catalogo")
+@Table(name = "categorias")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ItemCatalogo {
+public class Categoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String tipo;
 
     private String descripcion;
 }

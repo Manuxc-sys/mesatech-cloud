@@ -23,6 +23,8 @@ public class SolicitudService {
     }
 
     public Solicitud crear(Solicitud solicitud) {
+
+        solicitud.setEstado("CREADA");
         return solicitudRepository.save(solicitud);
     }
 

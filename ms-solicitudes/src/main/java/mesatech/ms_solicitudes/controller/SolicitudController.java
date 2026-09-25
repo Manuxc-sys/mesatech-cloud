@@ -1,9 +1,9 @@
 package mesatech.ms_solicitudes.controller;
 
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import mesatech.ms_solicitudes.entity.Solicitud;
 import mesatech.ms_solicitudes.service.SolicitudService;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +29,7 @@ public class SolicitudController {
     }
 
     @PostMapping
-    public ResponseEntity<Solicitud> crear(@Valid @RequestBody Solicitud solicitud) {
+    public ResponseEntity<Solicitud> crear(@RequestBody Solicitud solicitud) {
         return ResponseEntity.ok(solicitudService.crear(solicitud));
     }
 
@@ -47,15 +47,4 @@ public class SolicitudController {
         solicitudService.eliminar(id);
         return ResponseEntity.noContent().build();
     }
-
-    @PutMapping("/{id}/estado")
-    public ResponseEntity<?> cambiarestado(@PathVariable Long id, @RequestParam String estado){
-        try {
-            Solicitud solicitudActualizada = solicitudService.actualizarEstado(id, estado);
-            return ResponseEntity.ok(solicitudActualizada);}
-        catch (IllegalStateException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-        }
-    }
-
+}

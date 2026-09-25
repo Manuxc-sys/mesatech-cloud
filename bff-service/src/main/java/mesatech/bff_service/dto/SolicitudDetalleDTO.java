@@ -6,7 +6,9 @@ import lombok.Data;
 public class SolicitudDetalleDTO {
     private Long id;
     private String titulo;
-    private String estado;
+    private String descripcion;
     private String categoria;
     private String prioridad;
+    private String estado;
+    private String usuarioSolicitante;
 }

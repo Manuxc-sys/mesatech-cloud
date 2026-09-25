@@ -9,4 +9,4 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: https://sts.windows.net/TU-TENANT-ID/
+          issuer-uri: https://login.microsoftonline.com/6c5abb9a-09e5-470d-9973-e54cf9ad6475/v2.0

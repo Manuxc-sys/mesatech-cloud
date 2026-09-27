@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name = "ms-catalogo-categoria", url = "http://localhost:8080")
+@FeignClient(name = "ms-catalogo-categoria", url = "http://10.0.0.142:8080")
 public interface CategoriaClient {
 
     @GetMapping("/api/categorias")

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = "ms-solicitudes", url = "${MS_SOLICITUDES_URL:http://localhost:8081}")
+@FeignClient(name = "ms-solicitudes", url ="http://10.0.0.135:8080")
 public interface SolicitudClient {
 
     @GetMapping("/api/solicitudes")

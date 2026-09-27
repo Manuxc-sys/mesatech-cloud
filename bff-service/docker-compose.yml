@@ -1,3 +1,4 @@
+version: '3.8'
 
 services:
   bff-service:
@@ -10,4 +11,16 @@ services:
     environment:
       - MS_CATALOGO_URL=${MS_CATALOGO_URL}
       - MS_PEDIDOS_URL=${MS_PEDIDOS_URL}
+
+      # -----------------------------------------------------------------------------
+      # PLAN A: Emisor v2.0 (Microsoft Entra ID)
+      # Usar cuando en Azure Portal el Manifiesto tenga "accessTokenAcceptedVersion": 2
+      # -----------------------------------------------------------------------------
+      # - SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI=https://login.microsoftonline.com/${TENANT_ID}/v2.0
+
+      # -----------------------------------------------------------------------------
+      # PLAN B: Emisor v1.0 (sts.windows.net)
+      # Usar si los tokens emitidos en React vienen con "iss: https://sts.windows.net/..."
+      # (Nota: Es fundamental la barra "/" al final de la URL)
+      # -----------------------------------------------------------------------------
       - SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI=https://sts.windows.net/${TENANT_ID}/
